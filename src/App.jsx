@@ -39,7 +39,7 @@ function App() {
           <h2 style={{ marginBottom: "1rem", color: "#2c3e50" }}>
             Our Products
           </h2>
-          <ProductList />
+          <ProductList products={products} />
         </section>
 
         <aside>

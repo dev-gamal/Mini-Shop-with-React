@@ -1,12 +1,12 @@
 import ProductCard from "../ProductCard/ProductCard";
 import styles from "./ProductList.module.css";
 
-function ProductList() {
+function ProductList({ products }) {
   return (
     <div className={styles.listContainer}>
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 }
