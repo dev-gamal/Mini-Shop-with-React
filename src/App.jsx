@@ -12,6 +12,11 @@ function App() {
   const [cart, setCart] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  const deleteProduct = (id) => {
+    const updatedProducts = products.filter(product => product.id !== id);
+    setProducts(updatedProducts);
+  }
+
   const categories = [
     "All",
     ...new Set(productsData.map((product) => product.category)),
@@ -53,7 +58,7 @@ function App() {
           <h2 style={{ marginBottom: "1rem", color: "#2c3e50" }}>
             Our Products
           </h2>
-          <ProductList products={displayedProducts} />
+          <ProductList products={displayedProducts} onDeleteProduct={deleteProduct} />
         </section>
 
         <aside>

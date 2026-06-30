@@ -1,8 +1,7 @@
 import styles from "./ProductCard.module.css";
 
-function ProductCard({ product }) {
-
-  const { name, price, category, image } = product;
+function ProductCard({ product, onDeleteProduct }) {
+  const { id, name, price, category, image } = product;
 
   return (
     <div className={styles.card}>
@@ -13,10 +12,19 @@ function ProductCard({ product }) {
       <div className={styles.info}>
         <p className={styles.category}>{category}</p>
         <h4>{name}</h4>
-        
+
         <p className={styles.price}>{price.toFixed(2)} €</p>
 
-        <button className={styles.addBtn}>Add to cart</button>
+        <div className={styles.action}>
+          <button className={styles.addBtn}>Add to cart</button>
+
+          <button
+            className={styles.deleteBtn}
+            onClick={() => onDeleteProduct(id)}
+          >
+            🗑️ Delete
+          </button>
+        </div>
       </div>
     </div>
   );
