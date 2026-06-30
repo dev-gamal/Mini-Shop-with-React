@@ -1,10 +1,28 @@
 import styles from "./CategoryFilter.module.css";
 
-function CategoryFilter() {
+function CategoryFilter({ categories, selectedCategory, setSelectedCategory }) {
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
   return (
     <div className={styles.filterContainer}>
-      <h3>Filter by category</h3>
-      <p className={styles.placeholder}>[Filter Zone : All, Electronic...]</p>
+      <label htmlFor="category-select" className={styles.label}>
+        Filter by category :
+      </label>
+
+      <select
+        id="category-select"
+        className={styles.select}
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+      >
+        {categories.map((category, index) => (
+          <option value={category} key={index}>
+            {category}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

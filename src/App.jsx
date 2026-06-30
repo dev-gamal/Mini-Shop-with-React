@@ -10,7 +10,17 @@ import Footer from "./components/Footer/Footer";
 function App() {
   const [products, setProducts] = useState(productsData);
   const [cart, setCart] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("Tous");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const categories = [
+    "All",
+    ...new Set(productsData.map((product) => product.category)),
+  ];
+
+  const displayedProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
 
   return (
     <div
@@ -35,11 +45,15 @@ function App() {
         }}
       >
         <section>
-          <CategoryFilter />
+          <CategoryFilter
+            categories={categories}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
           <h2 style={{ marginBottom: "1rem", color: "#2c3e50" }}>
             Our Products
           </h2>
-          <ProductList products={products} />
+          <ProductList products={displayedProducts} />
         </section>
 
         <aside>
